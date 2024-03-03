@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  postgres:
+    hostname: "${WARDEN_ENV_NAME}-postgres"
+    image: postgres:15.1
+    environment:
+      POSTGRES_PASSWORD: orocrm
+      POSTGRES_USER: orocrm
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+      - ./.warden/postgres/docker-entrypoint-initdb:/docker-entrypoint-initdb.d/
+  php-fpm:
+    build:
+      context: ./.warden/php-fpm
+    depends_on:
+      - postgres
+    volumes:
+      - ./.warden/php/zz-config.ini:/etc/php.d/zz-config.ini
+    environment:
+      - COMPOSER_PROCESS_TIMEOUT=3600
+  php-debug:
+    build:
+      context: ./.warden/php-debug
+    volumes:
+      - ./.warden/php/zz-config.ini:/etc/php.d/zz-config.ini
+    environment:
+      - COMPOSER_PROCESS_TIMEOUT=3600
+volumes:
+  postgresdata: {}
