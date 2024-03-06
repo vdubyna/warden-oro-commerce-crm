@@ -1,0 +1,22 @@
+---
+sync:
+  defaults:
+    mode: two-way-resolved
+    watch:
+      pollingInterval: 10
+    ignore:
+      vcs: true
+      paths:
+        # Root .idea folder
+        - "/.idea/**"
+        # Project files
+        - "/.project/**"
+        # Vim files
+        - "*~"
+        - "*.sw[a-p]"
+        # OroPlatform files
+        - "/node_modules/**"
+        - "/var/**"
+    permissions:
+      defaultFileMode: "0644"
+      defaultDirectoryMode: "0755"
