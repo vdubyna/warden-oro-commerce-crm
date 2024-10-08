@@ -1,4 +1,4 @@
-FROM docker.io/wardenenv/php-fpm:8.2
+FROM docker.io/wardenenv/php-fpm:8.3
 
 USER root
 

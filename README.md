@@ -22,14 +22,39 @@ warden env up
 warden sign-certificate app.orocrm.test 
 ```
 At the moment installation includes the following services:
-* PHP 8.2
+* PHP 8.3
 * Nginx
 * PostgreSQL 15.1
 * Redis 6.2
-* Node 18.14.0
+* Node 20.10.0
 * Composer 2.*
 
 Website should be available at `https://app.orocrm.test`
 
 More details are on warden [documentation](https://docs.warden.dev/index.html)
+
+## ORO install
+
+After environment install you can setup oro commerce
+
+```shell
+# login into container
+warden env shell
+
+# Create project in new directory
+composer2 create-project oro/commerce-crm-application my_project_name 6.0.3 -n
+
+# Move project file to document root 
+mv my_project_name/* .
+mv my_project_name/.* .
+rm -rf mv my_project_name
+
+# Install oro migrations
+
+php bin/console oro:install --env=prod --timeout=2000
+
+```
+
+During installation you will put required credentials. 
+When it is done visit `https://app.orocrm.test/admin`
 

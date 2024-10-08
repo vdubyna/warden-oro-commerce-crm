@@ -1,4 +1,4 @@
-FROM docker.io/wardenenv/php-fpm:8.2-xdebug3
+FROM docker.io/wardenenv/php-fpm:8.3-xdebug3
 
 USER root
 
