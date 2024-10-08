@@ -49,8 +49,10 @@ mv my_project_name/* .
 mv my_project_name/.* .
 rm -rf mv my_project_name
 
-# Install oro migrations
+# Set local config
+mv .env-app.local.dist .env-app.local 
 
+# Install oro migrations
 php bin/console oro:install --env=prod --timeout=2000
 
 ```
